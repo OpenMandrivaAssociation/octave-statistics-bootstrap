@@ -1,20 +1,22 @@
 %global octpkg statistics-bootstrap
 
+# NOTE: conseder to move *mex to %{octpkglibdir}
+
 Summary:	A statistics package for GNU Octave with a variety of bootstrap resampling tools
-Name:		octave-%{octpkg}
-Version:	3.6.4
+Name:		octave-statistics-bootstrap
+Version:	5.1.6
 Release:	1
-Url:		https://github.com/gnu-octave/%{octpkg}
-Source0:	%{url}/archive/v%{version}/%{octpkg}-%{version}.tar.gz
 License:	GPLv3+
 Group:		Sciences/Mathematics
-BuildArch:	noarch
+#Url:		https://packages.octave.org/statistics-bootstrap/
+Url:		https://github.com/gnu-octave/statistics-bootstrap/
+Source0:	https://github.com/gnu-octave/statistics-bootstrap/archive/v%{version}/%{octpkg}-%{version}.tar.gz
 
-BuildRequires:	octave-devel >= 3.6.0
-BuildRequires:	octave-statistics >= 1.0.0
+BuildRequires:  octave-devel >= 6.1.0
+BuildRequires:  octave-statistics >= 1.5.0
 
 Requires:	octave(api) = %{octave_api}
-Requires:	octave-statistics >= 1.0.0
+Requires:  	octave-statistics >= 1.5.0
 
 Requires(post): octave
 Requires(postun): octave
@@ -32,16 +34,17 @@ The Octave statistics-bootstrap package is forked from the GitHub repository ibo
 #doc NEWS
 %dir %{octpkgdir}
 %{octpkgdir}/*
+#dir %{octpkglibdir}
+#{octpkglibdir}/*
+#{_metainfodir}/*.metainfo.xml
 
 #---------------------------------------------------------------------------
 
 %prep
 %autosetup -p1 -n %{octpkg}-%{version}
 
-# remove backup files
-#find . -name \*~ -delete
-
 %build
+%set_build_flags
 %octave_pkg_build
 
 %install
