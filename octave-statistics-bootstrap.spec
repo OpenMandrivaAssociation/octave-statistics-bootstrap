@@ -5,7 +5,7 @@
 Summary:	A statistics package for GNU Octave with a variety of bootstrap resampling tools
 Name:		octave-statistics-bootstrap
 Version:	5.4.2
-Release:	1
+Release:	2
 License:	GPLv3+
 Group:		Sciences/Mathematics
 #Url:		https://packages.octave.org/statistics-bootstrap/
